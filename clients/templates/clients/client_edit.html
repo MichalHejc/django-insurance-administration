@@ -1,0 +1,13 @@
+{% extends 'clients/layout.html' %}
+
+{% block title %}Upravit klienta{% endblock title %}
+
+{% block section %}
+
+    <form action="" method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <input type="submit" value="Upravit klienta">
+    </form>
+
+{% endblock section %}

@@ -1,0 +1,14 @@
+{% extends 'clients/layout.html' %}
+
+{% block title %}Vymazat klienta{% endblock title %}
+
+{% block section %}
+
+    <p>Určitě chcete vymazat tohoto klienta? ({{ client.name }} {{ client.surname }})</p>
+
+    <form action="" method="post">
+        {% csrf_token %}
+        <input type="submit" value="Vymazat klienta">
+    </form>
+
+{% endblock section %}

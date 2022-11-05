@@ -1,0 +1,26 @@
+body {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+
+header {
+    height: 6em;
+    background: rgb(230, 230, 230);
+}
+
+
+h1 {
+    padding: 0;
+    margin: 0;
+}
+
+.container {
+    max-width: 1280px;
+    margin: 0 auto;
+}
+
+.edit-btn {
+    display: inline;
+}

@@ -1,0 +1,20 @@
+{% extends 'clients/layout.html' %}
+
+{% block title %}Pojištěnci{% endblock title %}
+
+{% block section %}
+    <table>
+
+    {% for client in clients %}
+        <tr>
+            <td><a href="{% url 'clients:client-detail' client.id %}"><p>{{ client.name }} {{ client.surname }}</p></a></td>
+            <td><a href="{% url 'clients:edit-client' client.id %}">UPRAVIT</a></td>
+            <td><a href="{% url 'clients:delete-client' client.id %}">VYMAZAT</a></td>
+        </tr>
+    {% empty %}
+        <p>Žádný záznam.</p>
+    {% endfor %}
+    </table>
+
+    <a href="{% url 'clients:client-create' %}">NOVÝ POJIŠTĚNEC</a>
+{% endblock section %}

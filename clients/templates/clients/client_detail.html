@@ -1,0 +1,11 @@
+{% extends 'clients/layout.html' %}
+
+{% block title %}Detail pojištěnce{% endblock title %}
+
+{% block section %}
+
+    <p>{{ client.name }} {{ client.surname }}</p>
+    <p>{{ client.email }}</p>
+    <p>{{ client.phone_number }}</p>
+
+{% endblock section %}
