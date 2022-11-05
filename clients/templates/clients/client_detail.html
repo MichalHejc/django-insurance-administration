@@ -8,4 +8,22 @@
     <p>{{ client.email }}</p>
     <p>{{ client.phone_number }}</p>
 
+    <h2>Pojištění:</h2>
+    <table>
+        {% for insurance in insurances %}
+        <tr>
+            <td>{{ insurance.get_insurance_type_display }} ({{ insurance.subject }})</td>
+            <td>{{ insurance.amount }}</td>
+            <td>od {{ insurance.date_from|date:"d.m. Y" }} do {{ insurance.date_to|date:"d.m. Y" }}</td>
+            <td><a href="{% url 'clients:insurance-detail' pk=client.id id=insurance.id %}">DETAIL</a></td>
+            <td><a href="{% url 'clients:delete-insurance' pk=client.id id=insurance.id %}">VYMAZAT</a></td>
+            <td><a href="{% url 'clients:edit-insurance' pk=client.id id=insurance.id %}">UPRAVIT</a></td>
+        </tr>
+        {% empty %}
+        <p>Klient zatím nemá sjednané žádné pojištění</p>
+        {% endfor %}
+    </table>
+
+    <a href="{% url 'clients:create-insurance' pk=client.id %}">Přidat pojištění</a>
+
 {% endblock section %}

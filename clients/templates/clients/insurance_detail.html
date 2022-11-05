@@ -1,0 +1,10 @@
+{% extends 'clients/layout.html' %}
+
+{% block title %}Detail pojištění{% endblock title %}
+
+{% block section %}
+
+    <h2>Pojištění: {{ insurance.get_insurance_type_display }} - {{ insurance.subject }}</h2>
+    <p>{{ client.name }} {{ client.surname }}</p>
+
+{% endblock section %}

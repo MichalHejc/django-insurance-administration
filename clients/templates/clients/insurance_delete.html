@@ -1,0 +1,14 @@
+{% extends 'clients/layout.html' %}
+
+{% block title %}Vymazat Pojištění{% endblock title %}
+
+{% block section %}
+
+    <p>Určitě chcete vymazat toto pojištění?</p>
+
+    <form action="" method="post">
+        {% csrf_token %}
+        <input type="submit" value="Vymazat pojištění">
+    </form>
+
+{% endblock section %}
