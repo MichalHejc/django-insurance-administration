@@ -31,20 +31,14 @@ def client_detail(request, pk):
 
 
 def create_client(request):
-    """
-    Creates client and than redirects to new clients detail. If there are more clients with same email, redirects to all clients list view page.
-    """
     form = CreateClientForm()
 
     if request.method == "POST":
         form = CreateClientForm(request.POST)
         if form.is_valid():
-            form.save()
-            try:
-                client = Client.objects.get(email=request.POST["email"])
-                return redirect(f"/pojistenci/{client.id}/")
-            except:
-                return redirect("clients:list-all-clients")
+            client= form.save()
+            return redirect(f"/pojistenci/{client.id}/")
+
     
     return render(request, "clients/create_client.html", {
         "form": form
