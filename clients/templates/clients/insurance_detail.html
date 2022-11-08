@@ -4,7 +4,37 @@
 
 {% block section %}
 
-    <h2>Pojištění: {{ insurance.get_insurance_type_display }} - {{ insurance.subject }}</h2>
-    <p>{{ client.name }} {{ client.surname }}</p>
+
+<div class="table-content-box">
+
+
+    <div class="content-box-header">
+        <h2>{{ insurance.get_insurance_type_display }}</h2>
+    </div>
+    
+
+    <table>
+        <tr>
+            <td>Klient:</td>
+            <td>{{ client.name }} {{ client.surname }}</td>
+        </tr>
+        <tr>
+            <td>Předmět pojištění:</td>
+            <td>{{ insurance.subject }}</td>
+        </tr>
+        <tr>
+            <td>Pojistná částka:</td>
+            <td>{{ insurance.amount }} Kč</td>
+        </tr>
+        <tr>
+            <td>Pojištěno od:</td>
+            <td>{{ insurance.date_from|date:"d.m. Y" }}</td>
+        </tr>
+        <tr>
+            <td>Pojištěno do:</td>
+            <td>{{ insurance.date_to|date:"d.m. Y" }}</td>
+        </tr>
+    </table>
+</div>
 
 {% endblock section %}

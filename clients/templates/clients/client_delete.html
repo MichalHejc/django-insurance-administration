@@ -4,7 +4,7 @@
 
 {% block section %}
 
-    <p>Určitě chcete vymazat tohoto klienta? ({{ client.name }} {{ client.surname }})</p>
+    <p>Opravdu chcete vymazat tohoto klienta? ({{ client.name }} {{ client.surname }})</p>
 
     <form action="" method="post">
         {% csrf_token %}

@@ -14,6 +14,8 @@ h1, h2, h3 {
     text-transform: uppercase;
 }
 
+
+/* HEADER AND NAVIGATION */
 header {
     height: 6em;
     width: 100vw;
@@ -52,6 +54,8 @@ nav ul li a:hover {
     border-bottom: 2px solid white;
 }
 
+
+/* GENERAL SECTION AND CONTAINER */
 section {
     box-sizing: border-box;
     background: white;
@@ -70,10 +74,7 @@ section {
 }
 
 
-.edit-btn {
-    display: inline;
-}
-
+/* BOXES AND TABLE BOXES*/
 .content-box {
     max-width: 360px;
     border-radius: 10px;
@@ -92,7 +93,104 @@ section {
     padding: 1em;
 }
 
+
 .content-box-header h2, .content-box-header h2, .content-box-header h3 {
     padding: 0;
     margin: 0;
+}
+
+.table-content-box {
+    width: fit-content;
+    border-radius: 10px;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+
+
+.table-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.table-header a {
+    color: white;
+    text-decoration: none;
+    border: 1px solid white;
+    padding: 0.5em 1em;
+    border-radius: 5px;
+    margin-left: 1em;
+}
+
+.table-header img {
+    vertical-align: bottom;
+    padding-right: 0.5em;
+}
+
+
+/* TABLE */
+table, tr {
+    border-collapse: collapse;
+    border: 1px solid rgb(201, 201, 201);
+  }
+
+table th, td {
+    padding: 0.7em 2em;
+    text-align: left;
+}
+
+.empty-message {
+    padding: 0.4em 2em;
+    color: rgb(94, 94, 94);
+}
+
+
+tr:nth-child(even) {
+    background-color: #f3f3f3;
+}
+
+
+.custom-table tr:not(:first-child):hover {
+    background: rgb(233, 233, 233);
+}
+
+
+.table-button {
+    padding: 0 0.5em;
+    filter: contrast(70%);
+}
+
+
+/* CLIENT DETAIL - GRID*/
+.client-detail {
+    max-width: 700px;
+    display: grid;
+    grid-template-columns: 1fr 2fr 1fr;
+    grid-template-rows: auto auto;
+    gap: 0 1em;
+    margin-bottom: 4em;
+}
+
+
+.client-detail-portrait {
+    grid-column: 1;
+    grid-row: 1 / 3;
+    margin: auto;
+}
+
+
+#client-detail-name {
+    grid-column: 2 / 3;
+    grid-row: 1;
+}
+
+
+#client-detail-address {
+    grid-column: 2;
+    grid-row: 2;
+}
+
+
+#client-detail-contact {
+    grid-column: 3;
+    grid-row: 2;
 }

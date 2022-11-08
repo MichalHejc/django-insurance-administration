@@ -1,20 +1,38 @@
 {% extends 'clients/layout.html' %}
 
+{% load static %}
+
 {% block title %}Pojištěnci{% endblock title %}
 
 {% block section %}
-    <table>
 
-    {% for client in clients %}
-        <tr>
-            <td><a href="{% url 'clients:client-detail' client.id %}"><p>{{ client.name }} {{ client.surname }}</p></a></td>
-            <td><a href="{% url 'clients:edit-client' client.id %}">UPRAVIT</a></td>
-            <td><a href="{% url 'clients:delete-client' client.id %}">VYMAZAT</a></td>
-        </tr>
-    {% empty %}
-        <p>Žádný záznam.</p>
-    {% endfor %}
-    </table>
+<div class="table-content-box">
+    <div class="content-box-header table-header">
+        <h1>Seznam pojištěnců</h1>
+        <a href="{% url 'clients:create-client' %}"><img src="{% static 'clients/person_add.png' %}" alt="add person" height="25px">NOVÝ POJIŠTĚNEC</a>
+    </div>
 
-    <a href="{% url 'clients:create-client' %}">NOVÝ POJIŠTĚNEC</a>
+    <div class="custom-table">
+        <table>
+        {% if clients|length > 0 %}
+            <tr>
+                <th>Jméno</th>
+                <th>Adresa</th>
+                <th></th>
+                <th></th>
+            </tr>
+        {% endif %}
+        {% for client in clients %}
+            <tr>
+                <td><a href="{% url 'clients:client-detail' client.id %}">{{ client.name }} {{ client.surname }}</a></td>
+                <td>{{ client.street_address }}, {{ client.city }} {{ client.postal_code }}</td>
+                <td class="table-button"><a href="{% url 'clients:edit-client' client.id %}"><img src="{% static 'clients/edit.png' %}" height="25px" alt="edit" title="upravit"></a></td>
+                <td class="table-button"><a href="{% url 'clients:delete-client' client.id %}"><img src="{% static 'clients/delete.png' %}" height="25px" alt="delete" title="smazat"></a></td>
+            </tr>
+        {% empty %}
+            <p>Žádný záznam.</p>
+        {% endfor %}
+        </table>
+    </div>
+</div>
 {% endblock section %}
