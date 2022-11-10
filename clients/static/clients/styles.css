@@ -10,6 +10,10 @@ body {
     min-height: 100vh;
 }
 
+h1 {
+    font-size: 2em;
+}
+
 h1, h2, h3 {
     text-transform: uppercase;
 }
@@ -17,12 +21,54 @@ h1, h2, h3 {
 
 /* HEADER AND NAVIGATION */
 header {
-    height: 6em;
+    min-height: 6em;
     width: 100vw;
     background: #1F1E26;
     color: white;
     position: fixed;
 }
+
+#login-logout-bar {
+    text-align: right;
+    padding: 0.5em 1em 0 0;
+}
+
+#username {
+    display: inline;
+    font-weight: bold;
+}
+
+.login-logout {
+    display: inline;
+    text-decoration: none;
+    color: white;
+    font-size: 0.9em;
+    transition: all 0.2s ease;
+}
+
+.login-logout:hover {
+    color: #4FFFF3;
+}
+
+
+#register-btn {
+    text-decoration: none;
+    color: white;
+    display: inline;
+    border-radius: 5px;
+    padding: 0.2em 0.5em;
+    font-size: 0.9em;
+    margin-left: 1em;
+    border: 1px solid white;
+    transition: all 0.2s ease;
+}
+
+
+#register-btn:hover {
+    color: #4FFFF3;
+    border: 1px solid #4FFFF3;
+}
+
 
 header h1 {
     margin: auto 2em auto 0;
@@ -30,7 +76,15 @@ header h1 {
 
 #header-content {
     display: flex;
+    padding: 0 0 0 1em;
+    margin-top: 0;
 }
+
+#header-content ul, #header-content h1  {
+    padding-top: 0;
+    margin-top: 0;
+}
+
 
 nav ul {
     display: flex;
@@ -53,6 +107,9 @@ nav ul li a {
 nav ul li a:hover {
     border-bottom: 2px solid white;
 }
+
+
+
 
 
 /* GENERAL SECTION AND CONTAINER */
@@ -193,4 +250,46 @@ tr:nth-child(even) {
 #client-detail-contact {
     grid-column: 3;
     grid-row: 2;
+}
+
+
+/* BUTTONS */
+.go-back-button {
+    background: #1F1E26;
+    max-width: max-content;
+    border-radius: 10px;
+    margin-bottom: 2em;
+}
+
+
+/* PAGE PATH */
+.page-path {
+    display: block;
+    margin-bottom: 2em;
+}
+
+.page-path > * {
+    display: inline;
+    font-size: 0.8em;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+
+/* REGISTER AND LOGIN PAGE  */
+label {
+    display: block;
+}
+
+.helptext, form ul {
+    display: block;
+    font-size: 0.8em;
+    color: grey;
+    margin-bottom: 2em;
+}
+
+#id_username, #id_password1, #id_password2 {
+    border: 1px solid rgb(175, 175, 175);
+    border-radius: 5px;
+    font-size: 1em;
 }

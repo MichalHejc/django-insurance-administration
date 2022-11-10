@@ -5,6 +5,15 @@
 {% block title %}Detail pojištěnce{% endblock title %}
 
 {% block section %}
+
+    <div class="page-path">
+        <a href="{% url 'clients:index' %}">Domů</a>
+        <p>&rsaquo;</p>
+        <a href="{% url 'clients:list-all-clients' %}">Seznam pojištěnců</a> <p>&rsaquo;</p>
+        <p> {{ client.name }} {{ client.surname }}</p>
+    </div>
+
+
     <div class="client-detail">
         {% if client.surname|slice:"-1:" == "á" %}
         <img class="client-detail-portrait" src="{% static 'clients/user_female_icon.png' %}" height="150px" alt="">

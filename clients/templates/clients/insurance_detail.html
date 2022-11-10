@@ -1,9 +1,20 @@
 {% extends 'clients/layout.html' %}
 
+{% load static %}
+
 {% block title %}Detail pojištění{% endblock title %}
 
 {% block section %}
 
+<div class="page-path">
+    <a href="{% url 'clients:index' %}">Domů</a>
+    <p>&rsaquo;</p>
+    <a href="{% url 'clients:list-all-clients' %}">Seznam pojištěnců</a> 
+    <p>&rsaquo;</p>
+    <a href="{% url 'clients:client-detail' client.id %}">{{ client.name }} {{ client.surname }}</a>
+    <p>&rsaquo;</p>
+    <p>{{ insurance.get_insurance_type_display }}</p>
+</div>
 
 <div class="table-content-box">
 

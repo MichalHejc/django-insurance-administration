@@ -1,0 +1,21 @@
+{% extends 'clients/layout.html' %}
+
+{% block title %}Přihlášení{% endblock title %}
+
+{% block section %}
+
+    {% if user.is_authenticated %}
+        <p>Aktuálně jsi přihlášen.</p>
+        <a href="{% url 'clients:index' %}">Pokračovat na hlavní stránku.</a>
+    {% else %}
+        <h1>Přihlášení</h1>
+        <hr>
+        <form action="" method="post" autocomplete="off">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <input type="submit" value="Přihlásit se">
+        </form>
+    {% endif %}
+
+
+{% endblock section %}

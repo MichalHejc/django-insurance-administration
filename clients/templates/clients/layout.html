@@ -15,6 +15,14 @@
 
 <body>
     <header>
+        <div id="login-logout-bar" class="container">
+            {% if user.is_authenticated %}
+                <p id="username">{{ request.user.username }} </p><a href="{% url 'logout' %}" class="login-logout">| Odhlásit se</a>
+            {% else %}
+                <a href="{% url 'login' %}" class="login-logout">Přihlásit se </a><a href="{% url 'register' %}" id="register-btn">Registrovat se</a>
+            {% endif %}
+        </div>
+
         <div id="header-content" class="container">
             <h1>LOGO</h1>
             <nav>
