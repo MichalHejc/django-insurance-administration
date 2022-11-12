@@ -4,6 +4,11 @@
 
 {% block title %}Pojištěnci{% endblock title %}
 
+{% block navigation %}
+<li><a  href="{% url 'clients:index' %}">O&nbsp;aplikaci</a></li>
+<li><a class="active" href="{% url 'clients:list-all-clients' %}">Pojištěnci</a></li>
+{% endblock navigation %}
+
 {% block section %}
 
 <div class="page-path">
@@ -15,7 +20,9 @@
 <div class="table-content-box">
     <div class="content-box-header table-header">
         <h1>Seznam pojištěnců</h1>
-        <a href="{% url 'clients:create-client' %}"><img src="{% static 'clients/person_add.png' %}" alt="add person" height="25px">NOVÝ POJIŠTĚNEC</a>
+        {% if user.is_staff %}
+        <a href="{% url 'clients:create-client' %}"><img src="{% static 'clients/person_add_blue.png' %}" alt="add person" height="25px">NOVÝ POJIŠTĚNEC</a>
+        {% endif %}
     </div>
 
     <div class="custom-table">
@@ -26,14 +33,21 @@
                 <th>Adresa</th>
                 <th></th>
                 <th></th>
+
             </tr>
         {% endif %}
         {% for client in clients %}
             <tr>
                 <td><a href="{% url 'clients:client-detail' client.id %}">{{ client.name }} {{ client.surname }}</a></td>
                 <td>{{ client.street_address }}, {{ client.city }} {{ client.postal_code }}</td>
+                
+                {% if user.is_staff %}
                 <td class="table-button"><a href="{% url 'clients:edit-client' client.id %}"><img src="{% static 'clients/edit.png' %}" height="25px" alt="edit" title="upravit"></a></td>
                 <td class="table-button"><a href="{% url 'clients:delete-client' client.id %}"><img src="{% static 'clients/delete.png' %}" height="25px" alt="delete" title="smazat"></a></td>
+                {% else %}
+                <td></td>
+                <td></td>
+                {% endif %}
             </tr>
         {% empty %}
             <p>Žádný záznam.</p>

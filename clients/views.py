@@ -1,8 +1,10 @@
-from django.http import HttpResponseRedirect
+from django.contrib.admin.views.decorators import staff_member_required
+from django.contrib.auth.decorators import login_required, user_passes_test
 from django.shortcuts import render, redirect
 
 from . forms import CreateClientForm, CreateInsuranceForm
 from . models import Client, Insurance
+
 
 def index(request):
     return render(request, "clients/index.html")
@@ -12,6 +14,7 @@ def index(request):
 CLIENT VIEWS
 """
 
+@login_required
 def list_all_clients(request):
     clients = Client.objects.all()
     return render(request, "clients/clients_list.html", {
@@ -19,6 +22,7 @@ def list_all_clients(request):
     })
 
 
+@login_required
 def client_detail(request, pk):
     client = Client.objects.get(id=pk)
     insurances = Insurance.objects.filter(client_id=pk)
@@ -29,7 +33,7 @@ def client_detail(request, pk):
         "insurances": insurances
     })
 
-
+@staff_member_required(login_url="/login/")
 def create_client(request):
     form = CreateClientForm()
 
@@ -45,6 +49,7 @@ def create_client(request):
     })
 
 
+@staff_member_required(login_url="/login/")
 def edit_client(request, pk):
     client = Client.objects.get(id=pk)
     form = CreateClientForm(instance=client)
@@ -61,6 +66,7 @@ def edit_client(request, pk):
     })
 
 
+@staff_member_required(login_url="/login/")
 def delete_client(request, pk):
     client = Client.objects.get(id=pk)
     
@@ -78,6 +84,7 @@ def delete_client(request, pk):
 INSURANCE VIEWS
 """
 
+@login_required()
 def insurance_detail(request, pk, id):
     client = Client.objects.get(id=pk)
     insurance = Insurance.objects.get(id=id)
@@ -87,7 +94,7 @@ def insurance_detail(request, pk, id):
         "insurance": insurance
     })
 
-
+@staff_member_required(login_url="/login/")
 def create_insurance(request, pk):
     client = Client.objects.get(id=pk)
     form = CreateInsuranceForm()
@@ -105,7 +112,7 @@ def create_insurance(request, pk):
         "client": client
     })
 
-
+@staff_member_required(login_url="/login/")
 def edit_insurance(request, pk, id):
     insurance = Insurance.objects.get(id=id)
     form = CreateInsuranceForm(instance=insurance)
@@ -120,7 +127,7 @@ def edit_insurance(request, pk, id):
         "form": form
     })
 
-
+@staff_member_required(login_url="/login/")
 def delete_insurance(request, pk, id):
     insurance = Insurance.objects.get(id=id)
 

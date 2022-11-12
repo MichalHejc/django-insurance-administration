@@ -4,6 +4,11 @@
 
 {% block title %}Detail pojištění{% endblock title %}
 
+{% block navigation %}
+<li><a  href="{% url 'clients:index' %}">O&nbsp;aplikaci</a></li>
+<li><a class="active" href="{% url 'clients:list-all-clients' %}">Pojištěnci</a></li>
+{% endblock navigation %}
+
 {% block section %}
 
 <div class="page-path">
@@ -16,8 +21,7 @@
     <p>{{ insurance.get_insurance_type_display }}</p>
 </div>
 
-<div class="table-content-box">
-
+<div class="secondary-info-box">
 
     <div class="content-box-header">
         <h2>{{ insurance.get_insurance_type_display }}</h2>

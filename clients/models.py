@@ -15,7 +15,7 @@ class Client(models.Model):
     def __str__(self):
         return f"{self.name} {self.surname}"
 
-
+ 
 class Insurance(models.Model):
     TYPES_OF_INSURANCE = [
         ("MAJETEK", "Pojištění majetku"),

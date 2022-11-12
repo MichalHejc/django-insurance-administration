@@ -2,12 +2,17 @@
 
 {% block title %}Vytvořit klienta{% endblock title %}
 
+{% block navigation %}
+<li><a  href="{% url 'clients:index' %}">O&nbsp;aplikaci</a></li>
+<li><a class="active" href="{% url 'clients:list-all-clients' %}">Pojištěnci</a></li>
+{% endblock navigation %}
+
 {% block section %}
 
     <form action="" method="post">
         {% csrf_token %}
         {{ form.as_p }}
-        <input type="submit" value="Vytvořit klienta">
+        <input class="custom-btn" type="submit" value="Vytvořit klienta">
     </form>
 
 {% endblock section %}

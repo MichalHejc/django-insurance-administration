@@ -2,13 +2,18 @@
 
 {% block title %}Vymazat Pojištění{% endblock title %}
 
+{% block navigation %}
+<li><a  href="{% url 'clients:index' %}">O&nbsp;aplikaci</a></li>
+<li><a class="active" href="{% url 'clients:list-all-clients' %}">Pojištěnci</a></li>
+{% endblock navigation %}
+
 {% block section %}
 
     <p>Opravdu chcete vymazat toto pojištění?</p>
 
     <form action="" method="post">
         {% csrf_token %}
-        <input type="submit" value="Vymazat pojištění">
+        <input class="custom-btn" type="submit" value="Vymazat pojištění">
     </form>
 
 {% endblock section %}

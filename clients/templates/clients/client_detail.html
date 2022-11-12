@@ -2,6 +2,11 @@
 
 {% load static %}
 
+{% block navigation %}
+<li><a  href="{% url 'clients:index' %}">O&nbsp;aplikaci</a></li>
+<li><a class="active" href="{% url 'clients:list-all-clients' %}">Pojištěnci</a></li>
+{% endblock navigation %}
+
 {% block title %}Detail pojištěnce{% endblock title %}
 
 {% block section %}
@@ -36,7 +41,9 @@
     <div class="table-content-box">
         <div class="content-box-header table-header">
             <h2>Sjednaná pojištění</h2>
-            <a href="{% url 'clients:create-insurance' pk=client.id %}"><img src="{% static 'clients/add_circle.png' %}" alt="add circle" height="25px">PŘIDAT POJIŠTĚNÍ</a>
+            {% if user.is_staff %}
+            <a href="{% url 'clients:create-insurance' pk=client.id %}"><img src="{% static 'clients/add_circle_blue.png' %}" alt="add circle" height="25px">PŘIDAT POJIŠTĚNÍ</a>
+            {% endif %}
         </div>
 
         <div class="custom-table">
@@ -53,10 +60,15 @@
                 {% for insurance in insurances %}
                 <tr>
                     <td><a href="{% url 'clients:insurance-detail' pk=client.id id=insurance.id %}">{{ insurance.get_insurance_type_display }} ({{ insurance.subject }})</a></td>
-                    <td>{{ insurance.amount }}</td>
+                    <td>{{ insurance.amount }} Kč</td>
                     <td>od {{ insurance.date_from|date:"d.m. Y" }} do {{ insurance.date_to|date:"d.m. Y" }}</td>
+                    {% if user.is_staff %}
                     <td class="table-button"><a href="{% url 'clients:edit-insurance' pk=client.id id=insurance.id %}"><img src="{% static 'clients/edit.png' %}" height="25px" alt="edit" title="upravit"></a></td>
                     <td class="table-button"><a href="{% url 'clients:delete-insurance' pk=client.id id=insurance.id %}"><img src="{% static 'clients/delete.png' %}" height="25px" alt="delete" title="smazat"></a></td>
+                    {% else %}
+                    <td></td>
+                    <td></td>
+                    {% endif %}
                 </tr>
                 {% empty %}
                     <p class="empty-message">Klient nemá sjednáno žádné pojištění.</p>
@@ -64,7 +76,5 @@
             </table>
         </div>
     </div>
-
-    
 
 {% endblock section %}

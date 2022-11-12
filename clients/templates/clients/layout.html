@@ -11,24 +11,27 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;600&display=swap" rel="stylesheet">
     <title>{% block title %}Pojištěnci{% endblock title %}</title>
+    <link rel="icon" type="image/x-icon" href="{% static 'clients/house_icon.png' %}">
 </head>
 
 <body>
     <header>
         <div id="login-logout-bar" class="container">
             {% if user.is_authenticated %}
-                <p id="username">{{ request.user.username }} </p><a href="{% url 'logout' %}" class="login-logout">| Odhlásit se</a>
+                <p id="username">{{ request.user.username }} {% if user.is_staff %} (admin) {% endif %}</p><a href="{% url 'logout' %}" class="login-logout">| Odhlásit se</a>
             {% else %}
                 <a href="{% url 'login' %}" class="login-logout">Přihlásit se </a><a href="{% url 'register' %}" id="register-btn">Registrovat se</a>
             {% endif %}
         </div>
 
         <div id="header-content" class="container">
-            <h1>LOGO</h1>
+            <img src="{% static 'clients/app_logo.png' %}" height="50px" alt="">
             <nav>
                 <ul>
+                    {% block navigation %}
                     <li><a href="{% url 'clients:index' %}">O&nbsp;aplikaci</a></li>
                     <li><a href="{% url 'clients:list-all-clients' %}">Pojištěnci</a></li>
+                    {% endblock navigation %}
                 </ul>
             </nav>
         </div>

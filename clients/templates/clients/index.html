@@ -1,18 +1,39 @@
 {% extends 'clients/layout.html' %}
 
-{% block section %}
-    <h1>Vítejte v jednoduché aplikaci pro správu pojištěnců</h1><br>
+{% block navigation %}
+<li><a class="active" href="{% url 'clients:index' %}">O&nbsp;aplikaci</a></li>
+<li><a href="{% url 'clients:list-all-clients' %}">Pojištěnci</a></li>
+{% endblock navigation %}
 
+{% block section %}
+<h1>Vítejte v jednoduché aplikaci pro správu pojištěnců</h1><br>
+
+<article class="home-page">
     <div class="content-box">
-        <div class="content-box-header">
+        <div class="content-box-header small-box-background">
             <h2>APLIAKCE UMOŽŇUJE</h2>
             <h3>Základní CRUD operace pro správu pojištěnců</h3>
         </div>
         <div class="content-box-body">
-            <p>zobrazení všech pojištěnců / vytvoření nového pojištěnce / úpravu pojištěnce / smazání pojištěnce</p>
-            <p>u každého pojištěnce je možné vytvořit jedno nebo více pojištění, ty potom také prohlížet, upravovat, nebo mazat</p>
+            <p>Zobrazení všech pojištěnců / vytvoření nového pojištěnce / úpravu pojištěnce / smazání pojištěnce</p>
+            <p>U každého pojištěnce je možné vytvořit jedno nebo více pojištění</p>
         </div>
     </div>
+
+    <div class="content-box secondary-info-box">
+        <div class="content-box-header small-box-background">
+            <h1>Jak to funguje?</h1>
+        </div>
+        <div class="content-box-body">
+            <p>Přihlášený uživatel může pouze prohlížet jednotlivé pojištěnce a jejich pojištění</p>
+            <p>Uživatel, který se registruje jako administrátor, může navíc vytvářet nové pojištěnce, editovat je a mazat. Ke každému pojištěnci může také vytvářet, upravovat a mazat jednotlivá pojištění</p>
+        </div>
+    </div>
+
+    <a class="custom-btn" id="register-bottom-btn" href="{% url 'register' %}">Zaregistrovat se</a>
+
+
+</article>
 
 
 {% endblock section %}

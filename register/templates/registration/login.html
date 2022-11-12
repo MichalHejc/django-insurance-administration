@@ -5,16 +5,22 @@
 {% block section %}
 
     {% if user.is_authenticated %}
-        <p>Aktuálně jsi přihlášen.</p>
-        <a href="{% url 'clients:index' %}">Pokračovat na hlavní stránku.</a>
+        <p>Aktuálně jste přihlášen.</p>
+        <p>Je možné, že pro vstup na požadovanou stránku nemáte oprávění.</p><br>
+        <a class="custom-btn" href="{% url 'clients:index' %}">&larr; Zpět na hlavní stránku.</a>
     {% else %}
         <h1>Přihlášení</h1>
         <hr>
         <form action="" method="post" autocomplete="off">
             {% csrf_token %}
             {{ form.as_p }}
-            <input type="submit" value="Přihlásit se">
+            <input class="custom-btn" type="submit" value="Přihlásit se">
         </form>
+    {% endif %}
+
+    {% if not user.is_authenticated %}
+    
+    <p>Nemáte účet? Zaregistrujte se <a href="/registrace"><b>zde</b></a></p>
     {% endif %}
 
 

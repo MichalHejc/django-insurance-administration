@@ -2,12 +2,17 @@
 
 {% block title %}Upravit pojištění{% endblock title %}
 
+{% block navigation %}
+<li><a  href="{% url 'clients:index' %}">O&nbsp;aplikaci</a></li>
+<li><a class="active" href="{% url 'clients:list-all-clients' %}">Pojištěnci</a></li>
+{% endblock navigation %}
+
 {% block section %}
 
     <form action="" method="post">
         {% csrf_token %}
         {{ form.as_p }}
-        <input type="submit" value="Upravit pojištění">
+        <input class="custom-btn" type="submit" value="Upravit pojištění">
     </form>
 
 {% endblock section %}
