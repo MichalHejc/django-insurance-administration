@@ -22,7 +22,7 @@ def list_all_clients(request):
     """Renders all clients inside of table with paginator"""
 
     clients = Client.objects.all()
-    paginator = Paginator(clients, 3)
+    paginator = Paginator(clients, 5)
 
     page_number = request.GET.get('page')
     paginated_clients = paginator.get_page(page_number)
@@ -151,7 +151,7 @@ def edit_insurance(request, pk, id):
     return render(request, "clients/insurance_edit.html", {
         "form": form
     })
-    
+
 
 @staff_member_required(login_url="/login/")
 def delete_insurance(request, pk, id):
