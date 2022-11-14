@@ -1,5 +1,6 @@
 from django.contrib.admin.views.decorators import staff_member_required
-from django.contrib.auth.decorators import login_required, user_passes_test
+from django.contrib.auth.decorators import login_required
+from django.core.paginator import Paginator
 from django.shortcuts import render, redirect
 
 from . forms import CreateClientForm, CreateInsuranceForm
@@ -17,8 +18,13 @@ CLIENT VIEWS
 @login_required
 def list_all_clients(request):
     clients = Client.objects.all()
+    paginator = Paginator(clients, 3)
+
+    page_number = request.GET.get('page')
+    paginated_clients = paginator.get_page(page_number)
+
     return render(request, "clients/clients_list.html", {
-        "clients": clients
+        "paginated_clients": paginated_clients
     })
 
 

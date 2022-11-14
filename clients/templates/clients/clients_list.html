@@ -27,7 +27,7 @@
 
     <div class="custom-table">
         <table>
-        {% if clients|length > 0 %}
+        {% if paginated_clients|length > 0 %}
             <tr>
                 <th>Jméno</th>
                 <th>Adresa</th>
@@ -36,7 +36,7 @@
 
             </tr>
         {% endif %}
-        {% for client in clients %}
+        {% for client in paginated_clients %}
             <tr>
                 <td><a href="{% url 'clients:client-detail' client.id %}">{{ client.name }} {{ client.surname }}</a></td>
                 <td>{{ client.street_address }}, {{ client.city }} {{ client.postal_code }}</td>
@@ -55,4 +55,22 @@
         </table>
     </div>
 </div>
+
+<div class="pagination">
+        {% if paginated_clients.has_previous %}
+        <a href="?page=1" title="První stránka">&laquo;</a>
+        <a href="?page={{ paginated_clients.previous_page_number }}">{{ paginated_clients.previous_page_number }}</a>
+        {% endif %}
+
+        <div class="current">
+            {{ paginated_clients.number }}
+        </div>
+
+
+        {% if paginated_clients.has_next %}
+        <a href="?page={{ paginated_clients.next_page_number }}">{{ paginated_clients.next_page_number }}</a>
+        <a href="?page={{ paginated_clients.paginator.num_pages }}" title="Poslední stránka">&raquo;</a>
+        {% endif %}
+</div>
+
 {% endblock section %}

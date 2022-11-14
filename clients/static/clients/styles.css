@@ -214,10 +214,10 @@ table td {
 }
 
 th {
-    font-weight: normal;
     text-align: left;
     padding: 0.2em 2em;
-    background: rgb(196, 196, 196);
+    background: rgb(212, 212, 212);
+    color: rgb(105, 105, 105);
 }
 
 .empty-message {
@@ -357,4 +357,29 @@ input, #id_insurance_type {
 .errorlist {
     color: red;
     font-size: 1em;
+}
+
+/* PAGINATOR */
+.pagination {
+    text-align: center;
+    display: flex;
+    max-width: max-content;
+    margin: 1em auto;
+    gap: 0.2em;
+}
+
+.pagination > * {
+    border: 1px solid rgb(199, 199, 199);
+    border-radius: 5px;
+    padding: 0.2em 0.6em;
+    min-width: 0.8em;
+}
+
+.pagination a:hover {
+    color: #00A9A5;
+}
+
+.current {
+    background-color:#0f6d6a;
+    color: white;
 }
