@@ -8,6 +8,8 @@ from . models import Client, Insurance
 
 
 def index(request):
+    """Simple function to render home page"""
+
     return render(request, "clients/index.html")
 
 
@@ -17,6 +19,8 @@ CLIENT VIEWS
 
 @login_required
 def list_all_clients(request):
+    """Renders all clients inside of table with paginator"""
+
     clients = Client.objects.all()
     paginator = Paginator(clients, 3)
 
@@ -30,6 +34,8 @@ def list_all_clients(request):
 
 @login_required
 def client_detail(request, pk):
+    """Renders clients detail based on 'pk' parameter - only for authenticated users"""
+
     client = Client.objects.get(id=pk)
     insurances = Insurance.objects.filter(client_id=pk)
     print(insurances)
@@ -39,8 +45,11 @@ def client_detail(request, pk):
         "insurances": insurances
     })
 
+
 @staff_member_required(login_url="/login/")
 def create_client(request):
+    """Creates new client - for staff users only"""
+
     form = CreateClientForm()
 
     if request.method == "POST":
@@ -49,7 +58,6 @@ def create_client(request):
             client= form.save()
             return redirect(f"/pojistenci/{client.id}/")
 
-    
     return render(request, "clients/create_client.html", {
         "form": form
     })
@@ -57,6 +65,8 @@ def create_client(request):
 
 @staff_member_required(login_url="/login/")
 def edit_client(request, pk):
+    """View for editing client information - for staff users only. CLient is based on 'pk' parameter"""
+
     client = Client.objects.get(id=pk)
     form = CreateClientForm(instance=client)
 
@@ -74,6 +84,8 @@ def edit_client(request, pk):
 
 @staff_member_required(login_url="/login/")
 def delete_client(request, pk):
+    """View that redirects to 'delete client confirmation page' - for staff users only. CLient is based on 'pk' parameter"""
+
     client = Client.objects.get(id=pk)
     
     if request.method == "POST":
@@ -85,13 +97,14 @@ def delete_client(request, pk):
     })
 
 
-
 """
 INSURANCE VIEWS
 """
 
 @login_required()
 def insurance_detail(request, pk, id):
+    """Renders insurance detail page. Client is determined by 'pk' parameter, insurance by 'id' parameter - for authenticated users"""
+
     client = Client.objects.get(id=pk)
     insurance = Insurance.objects.get(id=id)
 
@@ -100,8 +113,11 @@ def insurance_detail(request, pk, id):
         "insurance": insurance
     })
 
+
 @staff_member_required(login_url="/login/")
 def create_insurance(request, pk):
+    """Creates new insurance, that belongs to client determined by klients 'pk' parameter - only for staff users"""
+
     client = Client.objects.get(id=pk)
     form = CreateInsuranceForm()
 
@@ -118,8 +134,11 @@ def create_insurance(request, pk):
         "client": client
     })
 
+
 @staff_member_required(login_url="/login/")
 def edit_insurance(request, pk, id):
+    """Edit insurance view, that belongs to client based on 'pk' parameter - for staff users only"""
+
     insurance = Insurance.objects.get(id=id)
     form = CreateInsuranceForm(instance=insurance)
     
@@ -132,9 +151,12 @@ def edit_insurance(request, pk, id):
     return render(request, "clients/insurance_edit.html", {
         "form": form
     })
+    
 
 @staff_member_required(login_url="/login/")
 def delete_insurance(request, pk, id):
+    """Redirects to 'delete insurance confirmation page' - for staff only. CLient is determined by 'pk' parameter, insurance by 'id' parameter"""
+
     insurance = Insurance.objects.get(id=id)
 
     if request.method == "POST":

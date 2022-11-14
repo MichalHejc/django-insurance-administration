@@ -4,6 +4,8 @@ from django.db import models
 
 
 class Client(models.Model):
+    """Class for Client instances"""
+    
     name = models.CharField(max_length=200, verbose_name="Jméno")
     surname = models.CharField(max_length=200, verbose_name="Příjmení")
     street_address = models.CharField(max_length=200, verbose_name="Ulice a číslo popisné")
@@ -17,6 +19,8 @@ class Client(models.Model):
 
  
 class Insurance(models.Model):
+    """Class for Insurance instances with predefined types of insurance"""
+
     TYPES_OF_INSURANCE = [
         ("MAJETEK", "Pojištění majetku"),
         ("HAVARIJNI", "Havarijní pojištění"),

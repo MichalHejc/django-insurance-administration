@@ -9,7 +9,7 @@
 
 {% block section %}
 
-    <p>Opravdu chcete vymazat toto pojištění?</p>
+    <p>Opravdu chcete vymazat toto pojištění? ({{ insurance.get_insurance_type_display }} - {{ insurance.subject }})</p>
 
     <form action="" method="post">
         {% csrf_token %}

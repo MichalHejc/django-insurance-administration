@@ -3,6 +3,8 @@ from django.shortcuts import render, redirect
 from . forms import RegisterForm
 
 def register(request):
+    """User register view that renders page with custom RegisterForm. Automatically logs user in after succesfull registration"""
+    
     if request.method == "POST":
         form = RegisterForm(request.POST)
         if form.is_valid():
