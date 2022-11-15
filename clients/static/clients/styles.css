@@ -33,6 +33,7 @@ header {
     background: var(--main);
     color: white;
     position: fixed;
+    z-index:1;
 }
 
 #login-logout-bar {
@@ -254,14 +255,7 @@ tr:nth-child(even) {
     justify-content: start;
 }
 
-#register-bottom-btn {
-    display: block;
-    grid-row: 2;
-    grid-column: 2;
-    max-width: 200px;
-    text-align: center;
-    margin: auto;
-}
+
 
 
 /* CLIENT DETAIL - GRID*/
@@ -315,6 +309,14 @@ tr:nth-child(even) {
     border: 1px solid #00aa9c;
 }
 
+#register-bottom-btn {
+    display: block;
+    grid-row: 2;
+    grid-column: 2;
+    max-width: 200px;
+    text-align: center;
+    margin: auto;
+}
 
 /* PAGE PATH */
 .page-path {
@@ -382,4 +384,111 @@ input, #id_insurance_type {
 .current {
     background-color:#0f6d6a;
     color: white;
+}
+
+@media only screen and (max-width: 768px) {
+    .home-page {
+        grid-template-columns: auto;
+        grid-template-rows: auto auto auto;
+        justify-content: center;
+    }
+
+    #register-bottom-btn {
+        display: block;
+        grid-row: 3;
+        grid-column: 1;
+    }
+
+    .content-box {
+        max-width: 500px;
+        border-radius: 10px;
+        box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    }
+
+    .table-header {
+        flex-direction: column;
+    }
+
+    .table-header h1, .table-header h2  {
+        text-align: center;
+        margin: 0 0 0.3em 0;
+    }
+}
+
+@media only screen and (max-width: 600px) {
+    
+    section {
+        padding: 1.5em;
+        padding-top: 8em;
+    }
+    
+    table th {
+        padding: 0.2em 0.5em;
+    }
+
+    table td {
+        padding: 0.2em 0.5em;
+        width: 30px;
+    }
+
+    .table-button {
+        box-sizing: border-box;
+    }
+}
+
+@media only screen and (max-width: 460px) {
+    section {
+        padding-top: 12em;
+    }
+    
+    #header-content {
+        display: flex;
+        flex-direction: column;
+        padding: 0 0 0 1em;
+        margin-top: 0;
+        align-items: flex-start;
+    }
+
+    nav > ul {
+        padding: 0;
+    }
+
+    #login-logout-bar {
+        background: rgba(99, 211, 202, 0.1);
+    }
+
+    .client-detail {
+        grid-template-columns: auto auto;
+        grid-template-rows: auto auto auto;
+    }
+
+    #client-detail-contact {
+        grid-column: 2;
+        grid-row: 2;
+    }
+
+    #client-detail-address {
+        grid-column: 2;
+        grid-row: 3;
+    }
+}
+
+@media only screen and (max-width: 460px) {
+    .client-detail-portrait {
+        height: 120px;
+    }
+
+    h1 {
+        font-size: 1.4em;
+    }
+    
+    th, td {
+        font-size: 14px;
+    }
+}
+
+@media only screen and (max-width: 380px) {
+    th, td {
+        font-size: 12px;
+    }
 }
