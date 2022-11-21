@@ -25,7 +25,7 @@
         </div>
 
         <div id="header-content" class="container">
-            <img src="{% static 'clients/app_logo.png' %}" height="50px" alt="">
+            <a href="{% url 'clients:index' %}"><img src="{% static 'clients/app_logo.png' %}" height="50px" alt=""></a>
             <nav>
                 <ul>
                     {% block navigation %}

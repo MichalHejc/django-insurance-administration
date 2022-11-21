@@ -16,11 +16,9 @@
             {{ form.as_p }}
             <input class="custom-btn" type="submit" value="Přihlásit se">
         </form>
-    {% endif %}
 
-    {% if not user.is_authenticated %}
-    
-    <p>Nemáte účet? Zaregistrujte se <a href="/registrace"><b>zde</b></a></p>
+    <p>Nemáte účet? Zaregistrujte se <a href="/registrace"><b>zde</b></a></p> <br>
+    <p>(Pro testovací účely je možné využít administrátorský účet): <br>Uživatelské jméno: <b>michal</b> <br>Heslo: <b>djangotest123</b></p>
     {% endif %}
 
 
